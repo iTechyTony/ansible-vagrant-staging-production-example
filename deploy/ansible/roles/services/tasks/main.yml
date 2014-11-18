@@ -1,0 +1,5 @@
+---
+# configure services
+
+- name: make sure the app daemon is loaded
+  template: src=app.conf dest=/etc/init/app.conf backup=no

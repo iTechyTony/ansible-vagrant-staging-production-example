@@ -1,0 +1,7 @@
+---
+# configuration for vagrant
+
+env: development
+hostname: app-vagrant
+base_path: /vagrant
+app_fqdn: app.loc

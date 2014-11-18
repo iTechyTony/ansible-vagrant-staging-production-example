@@ -1,0 +1,6 @@
+---
+# configure nginx
+
+- name: make sure nginx has a configuration file for app
+  template: src=app.conf dest=/etc/nginx/conf.d/app.conf backup=no
+  notify: restart nginx

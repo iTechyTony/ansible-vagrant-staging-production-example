@@ -1,0 +1,30 @@
+{
+  "name": "ansible-vagrant-staging-production-example",
+  "private": true,
+  "version": "0.1.0",
+  "description": "An Ansible example for devving in Vagrant with deployment support for staging and production servers.",
+  "author": {
+    "name": "Tyler Kellen",
+    "url": "http://goingslowly.com/"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "configure-hosts": "sudo hostile set 192.168.33.40 app.loc",
+    "dev": "opn http://app.loc:8080",
+    "provision": "ansible-playbook -i deploy/ansible/hosts deploy/ansible/provision.yml",
+    "deploy": "ansible-playbook -i deploy/ansible/hosts deploy/ansible/deploy.yml",
+    "deploy-staging": "ansible-playbook -i deploy/ansible/hosts deploy/ansible/deploy-staging.yml",
+    "vagrant-watch-log": "vagrant ssh -c 'tail -f /var/log/app'",
+    "vagrant-unwatch-log": "pgrep -f 'tail -f /var/log/app' | xargs kill",
+    "vagrant-restart-app": "vagrant ssh -c 'sudo service app restart'"
+  },
+  "devDependencies": {
+    "hostile": "^0.6.0",
+    "opn": "^1.0.0"
+  },
+  "dependencies": {
+    "express": "^4.9.5",
+    "morgan": "^1.5.0"
+  }
+}

@@ -1,0 +1,24 @@
+---
+# start it up
+
+- name: make sure code is on the box and in sync
+  synchronize:
+    src: ../../../../../
+    dest: "{{base_path}}"
+    rsync_opts:
+      - --include=package.json
+      - --include=index.js
+      - --include=public/***
+      - --exclude='.*'
+      - --exclude='*'
+      - --delete-before
+
+- name: run npm install
+  npm: path={{base_path}} state=present
+
+- name: make sure app log file exists
+  file: path={{app_log_file}} state=touch mode=0666 owner=www-data group=www-data
+
+- name: (re)start the app
+  command: /bin/true
+  notify: restart app
