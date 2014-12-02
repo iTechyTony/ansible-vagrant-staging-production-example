@@ -1,5 +1,5 @@
 ---
-# configure nest api server
+# configure it
 
 - name: set hostname
   hostname: name={{hostname}}

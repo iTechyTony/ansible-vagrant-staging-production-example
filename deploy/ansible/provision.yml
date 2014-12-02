@@ -1,16 +1,15 @@
 ---
 # deploy production and staging machines for live use
 
-- hosts:
-    - staging
-    - production
-  remote_user: ubuntu
+- hosts: all
+  gather_facts: false
   sudo: yes
   roles:
     - base
     - configure
     - nginx
     - services
-    - startup
   handlers:
     - include: handlers/handlers.yml
+
+- include: deploy.yml

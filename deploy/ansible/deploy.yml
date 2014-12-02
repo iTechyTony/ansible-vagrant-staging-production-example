@@ -1,12 +1,10 @@
 ---
-# deploy production machine for live use
+# deploy code
 
-- hosts:
-    - staging
-    - production
-  remote_user: ubuntu
+- hosts: all
+  gather_facts: false
   sudo: yes
   roles:
-    - startup
+    - deploy
   handlers:
     - include: handlers/handlers.yml
