@@ -16,9 +16,10 @@ Install the following:
 ### Development / Deployment Commands
 
 * `vagrant up` - import base box & provision with ansible
-* `ansible-playbook -i deploy/ansible/hosts deploy/ansible/provision.yml` - provision staging and production hosts
-* `ansible-playbook -i deploy/ansible/hosts deploy/ansible/deploy.yml` - deploy code to provisioned staging and production hosts
-* `ansible-playbook -i deploy/ansible/hosts deploy/ansible/deploy-staging.yml` - deploy code to staging host only
+* `ansible-playbook -i deploy/ansible/inventory/production deploy/ansible/provision.yml` - provision production servers
+* `ansible-playbook -i deploy/ansible/inventory/staging deploy/ansible/provision.yml` - provision staging servers
+* `ansible-playbook -i deploy/ansible/inventory/production deploy/ansible/deploy.yml` - deploy production servers
+* `ansible-playbook -i deploy/ansible/inventory/staging deploy/ansible/deploy.yml` - deploy staging servers
 * `vagrant ssh -c 'sudo service app restart'` - restart app service on vagrant machine
 * `vagrant ssh -c 'tail -f /var/log/app' &` - watch stdout/stderr for index.js running on vagrant box
 * `pgrep -f 'tail -f /var/log/app' | xargs kill` - stop watching /var/log/app
@@ -29,9 +30,10 @@ Install the following:
 
 * `npm run configure-hosts` - point app.loc to vagrant
 * `npm run dev` - open browser to appropriate url for development
-* `npm run provision` - provision staging and production hosts
-* `npm run deploy` - deploy code to provisioned staging and production hosts
-* `npm run deploy-staging` - deploy code to staging host only
+* `npm run provision` - provision production servers
+* `npm run provision-staging` - provision staging servers
+* `npm run deploy` - deploy code to production servers
+* `npm run deploy-staging` - deploy code to staging servers
 * `npm run vagrant-restart-app` - restart app service on vagrant machine
 * `npm run vagrant-watch-log &` - watch stdout/stderr for index.js running on vagrant box
 * `npm run vagrant-unwatch-log` - stop watching /var/log/app on vagrant box
